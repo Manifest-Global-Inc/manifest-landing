@@ -66,7 +66,7 @@
         // Initialize Supabase client
         const supabaseUrl = 'https://vxslsmwkmfcbpdtmoigw.supabase.co';
         const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZ4c2xzbXdrbWZjYnBkdG1vaWd3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTU2Mzg1NzgsImV4cCI6MjA3MTIxNDU3OH0.yKEZJkS8SvQEtJSx2gZ_xYE85S1DCGgyJs3Dnhz2uBI';
-        const supabase = window.supabase.createClient(supabaseUrl, supabaseAnonKey);
+                const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseAnonKey);
 
         // Device ID management
         function getOrCreateDeviceId() {
@@ -401,8 +401,10 @@
 
         // Function to replay swing animation using WAAPI
         function replaySwing() {
-            if (!hasUserInteracted && !hasDeviceSubmittedToday() && input.value.trim() === '') {
-                phoneWrapper.animate([
+            const phoneInput = document.querySelector('#phone');
+            const phoneWrapperEl = document.querySelector('.phone-input-wrapper');
+            if (!hasUserInteracted && !hasDeviceSubmittedToday() && phoneInput && phoneInput.value.trim() === '' && phoneWrapperEl) {
+                phoneWrapperEl.animate([
                     { transform: 'rotate(0deg)' },
                     { transform: 'rotate(6deg)' },
                     { transform: 'rotate(-6deg)' },
@@ -458,7 +460,13 @@
             
             // Start repeating swing animation after initial delay
             setTimeout(() => {
-                if (!hasDeviceSubmittedToday()) {
+                // Access hasDeviceSubmittedToday from the global scope or redeclare
+                const deviceId = localStorage.getItem('manifest_device_id');
+                const today = new Date().toISOString().split('T')[0];
+                const rateLimits = JSON.parse(localStorage.getItem('manifest_rate_limits') || '{"ip_submissions": {}, "device_submissions": {}}');
+                const hasSubmitted = rateLimits.device_submissions[today]?.[deviceId] >= 1;
+
+                if (!hasSubmitted) {
                     replaySwing(); // Call immediately for first swing
                     // Replay animation every 4 seconds
                     animationInterval = setInterval(replaySwing, 4000);
@@ -466,14 +474,14 @@
             }, 2250); // Initial delay
             
             // Stop animations when user interacts with input
-            input.addEventListener('focus', () => {
+            phoneInput.addEventListener('focus', () => {
                 hasUserInteracted = true;
                 if (animationInterval) {
                     clearInterval(animationInterval);
                 }
             });
             
-            input.addEventListener('input', () => {
+            phoneInput.addEventListener('input', () => {
                 hasUserInteracted = true;
                 if (animationInterval) {
                     clearInterval(animationInterval);
