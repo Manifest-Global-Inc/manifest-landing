@@ -170,7 +170,7 @@ h1 span {
 
 .footer {
     position: absolute;
-    bottom: 20px;
+    bottom: 15px;
     left: calc(12% + 10px);
     display: flex;
     align-items: center;
