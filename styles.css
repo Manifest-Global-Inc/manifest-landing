@@ -212,6 +212,27 @@ h1 span {
     margin-top: -6px;
 }
 
+.privacy-policy {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    z-index: 10;
+}
+
+.privacy-policy a {
+    font-family: "Nunito", sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    color: rgba(44, 7, 32, 0.7);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.privacy-policy a:hover {
+    color: rgba(44, 7, 32, 0.9);
+}
 @media (max-width: 768px) {
     .card {
         height: 92dvh;
@@ -300,4 +321,18 @@ h1 span {
     .pearl-decoration {
         left: 50%;
     }
+                .privacy-policy {
+                    display: block;
+                    text-align: center;
+                    margin-top: 15px;
+                    margin-bottom: 20px;
+                }
+        
+                .privacy-policy a {
+                    color: rgb(110 108 108 / 48%);
+                }
+        
+                .privacy-policy a:hover {
+                    color: rgb(110 108 108 / 65%);
+                }
 }
