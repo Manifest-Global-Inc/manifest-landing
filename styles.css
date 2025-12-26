@@ -197,10 +197,10 @@ h1 span {
 
 .divider {
     width: 2px;
-    height: 24px;
+    height: 16px;
     background-color: #8887FF;
     display: inline-block;
-    margin-top: -4px;
+    margin: 0 8px;
 }
 
 .follow-section {
@@ -322,7 +322,8 @@ h1 span {
     }
     
     .divider {
-        height: 20px;
+        height: 14px;
+        margin: 0 6px;
         margin-left: 0;
     }
     
