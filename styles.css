@@ -305,6 +305,7 @@ h1 span {
     
     .footer {
         position: fixed;
+        padding-top: 4px;
         bottom: 10px;
         left: 50%;
         transform: translateX(-50%);
