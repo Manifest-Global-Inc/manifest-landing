@@ -200,13 +200,14 @@ h1 span {
     height: 16px;
     background-color: #8887FF;
     display: inline-block;
-    margin: 0 8px;
+    margin: 0;
 }
 
 .follow-section {
     display: flex;
     align-items: center;
     gap: 7px;
+    padding: 0;
 }
 
 .social-link {
@@ -315,6 +316,7 @@ h1 span {
     .footer-text {
         font-size: 12px;
         font-weight: 700;
+        padding-top: 2px;
     }
     
     .footer-text:first-child {
@@ -323,7 +325,7 @@ h1 span {
     
     .divider {
         height: 14px;
-        margin: 0 6px;
+        margin: 0;
         margin-left: 0;
     }
     
