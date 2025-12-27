@@ -306,7 +306,7 @@ h1 span {
     .footer {
         position: fixed;
         padding-top: 2px;
-        bottom: 20px;
+        bottom: 12px;
         left: 50%;
         transform: translateX(-50%);
         justify-content: center;
@@ -342,7 +342,7 @@ h1 span {
                     display: block;
                     text-align: center;
                     margin-top: 15px;
-                    margin-bottom: 45px;
+                    margin-bottom: 40px;
                 }
         
                 .privacy-policy a {
